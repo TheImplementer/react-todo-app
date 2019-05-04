@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import App from './App';
 import Header from './Header';
+import ToDoList from './ToDoList';
 
 describe('App component', () => {
   let app: ShallowWrapper;
@@ -11,7 +12,11 @@ describe('App component', () => {
     expect(app.find('div.app-container').length).toBe(1);
   });
 
-  it('should contain the Header component', () => {
+  it('should display the Header component', () => {
     expect(app.containsMatchingElement(<Header />)).toBeTruthy();
+  });
+
+  it('should display the ToDoList component', () => {
+    expect(app.containsMatchingElement(<ToDoList />)).toBeTruthy();
   });
 });
