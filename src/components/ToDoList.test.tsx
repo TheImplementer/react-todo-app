@@ -13,13 +13,6 @@ describe('ToDoList component', () => {
   });
 
   it('should display the list of todos', () => {
-    toDoList.setState({
-      entries: [
-        {
-          description: 'First entry',
-        },
-      ],
-    });
     expect(toDoList.containsMatchingElement(<ToDo description="First entry" />));
   });
 });

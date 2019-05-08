@@ -1,40 +1,29 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 export interface AddNewToDoProps {
   onNewEntry: (newEntry: string) => void;
 }
 
-export interface AddNewToDoState {
-  newEntry: string;
-}
+const AddNewToDo: React.FC<AddNewToDoProps> = (props: AddNewToDoProps) => {
+  const [newEntryValue, setNewEntryValue] = useState('');
 
-export default class AddNewToDo extends React.Component<AddNewToDoProps, AddNewToDoState> {
-  state = {
-    newEntry: '',
+  const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewEntryValue(e.target.value);
   };
 
-  handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      newEntry: event.target.value,
-    });
+  const handleAddClick = () => {
+    props.onNewEntry(newEntryValue);
+    setNewEntryValue('');
   };
 
-  handleAddClick = () => {
-    this.props.onNewEntry(this.state.newEntry);
-    this.setState({
-      newEntry: '',
-    });
-  };
+  return (
+    <div>
+      <input type="text" value={newEntryValue} onChange={handleTextChange} />
+      <button type="button" onClick={handleAddClick}>
+        Add
+      </button>
+    </div>
+  );
+};
 
-  render() {
-    const { newEntry } = this.state;
-    return (
-      <div>
-        <input type="text" value={newEntry} onChange={this.handleTextChange} />
-        <button type="button" onClick={this.handleAddClick}>
-          Add
-        </button>
-      </div>
-    );
-  }
-}
+export default AddNewToDo;

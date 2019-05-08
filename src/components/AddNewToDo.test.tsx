@@ -22,6 +22,5 @@ describe('AddNewToDo component', () => {
     const addButton = addNewToDo.find('button[type="button"]');
     addButton.simulate('click');
     expect(newEntryFn).toHaveBeenCalledWith('Test entry');
-    expect(addNewToDo.state().newEntry).toBe('');
   });
 });
