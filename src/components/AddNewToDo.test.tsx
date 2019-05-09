@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import AddNewToDo, { AddNewToDoProps, AddNewToDoState } from './AddNewToDo';
+import AddNewToDo, { AddNewToDoProps } from './AddNewToDo';
 
 describe('AddNewToDo component', () => {
-  let addNewToDo: ShallowWrapper<AddNewToDoProps, AddNewToDoState>;
+  let addNewToDo: ShallowWrapper<AddNewToDoProps>;
   const newEntryFn = jest.fn();
   beforeEach(() => (addNewToDo = shallow(<AddNewToDo onNewEntry={newEntryFn} />)));
 

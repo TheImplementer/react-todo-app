@@ -13,6 +13,14 @@ describe('ToDoList component', () => {
   });
 
   it('should display the list of todos', () => {
-    expect(toDoList.containsMatchingElement(<ToDo description="First entry" />));
+    const addNewToDo = toDoList.find(AddNewToDo);
+    addNewToDo.props().onNewEntry('First entry');
+    addNewToDo.props().onNewEntry('Second entry');
+    expect(
+      toDoList.containsAllMatchingElements([
+        <ToDo description="First entry" />,
+        <ToDo description="Second entry" />,
+      ]),
+    ).toBeTruthy();
   });
 });
