@@ -10,6 +10,7 @@
     "@types/react": "16.8.16",
     "@types/react-dom": "16.8.4",
     "@types/react-test-renderer": "^16.8.1",
+    "@types/uuid": "^3.4.4",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "enzyme-matchers": "^7.0.2",
@@ -17,7 +18,8 @@
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0",
     "react-test-renderer": "^16.8.6",
-    "typescript": "3.4.5"
+    "typescript": "3.4.5",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
