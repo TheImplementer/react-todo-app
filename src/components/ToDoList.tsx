@@ -2,6 +2,20 @@ import React, { useState } from 'react';
 import uuid from 'uuid/v4';
 import AddNewToDo from './AddNewToDo';
 import ToDo from './ToDo';
+import styled from 'styled-components';
+
+const BodyContainer = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 1rem;
+`;
+
+const EntriesContainer = styled.div`
+  padding-top: 1rem;
+`;
 
 interface ToDoEntry {
   id: string;
@@ -21,12 +35,14 @@ const ToDoList: React.FC = () => {
   }
 
   return (
-    <div>
+    <BodyContainer>
       <AddNewToDo onNewEntry={handleNewEntry} />
-      {entries.map((entry, idx) => (
-        <ToDo description={entry.description} key={entry.id} />
-      ))}
-    </div>
+      <EntriesContainer>
+        {entries.map(entry => (
+          <ToDo description={entry.description} key={entry.id} />
+        ))}
+      </EntriesContainer>
+    </BodyContainer>
   );
 };
 
