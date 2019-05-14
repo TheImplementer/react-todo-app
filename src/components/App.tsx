@@ -11,6 +11,8 @@ const AppContainer = styled.div`
   justify-content: flex-start;
 `;
 
+AppContainer.displayName = 'AppContainer';
+
 const App: React.FC = () => {
   return (
     <AppContainer>

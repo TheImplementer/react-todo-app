@@ -7,6 +7,6 @@ describe('ToDo component', () => {
   beforeEach(() => (toDo = shallow(<ToDo description="Test" />)));
 
   it('should display the description', () => {
-    expect(toDo.find('div').text()).toBe('Test');
+    expect(toDo.find('Description').text()).toBe('Test');
   });
 });

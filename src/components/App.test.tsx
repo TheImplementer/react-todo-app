@@ -9,7 +9,7 @@ describe('App component', () => {
   beforeEach(() => (app = shallow(<App />)));
 
   it('should include the main container', () => {
-    expect(app.find('div.app-container').length).toBe(1);
+    expect(app.find('AppContainer').length).toBe(1);
   });
 
   it('should display the Header component', () => {

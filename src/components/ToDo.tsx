@@ -8,12 +8,19 @@ const ToDoContainer = styled.div`
   padding: 1rem;
 `;
 
+const Description = styled.div``;
+Description.displayName = 'Description';
+
 interface ToDoProps {
   description: string;
 }
 
 const ToDo: React.FC<ToDoProps> = props => {
-  return <ToDoContainer>{props.description}</ToDoContainer>;
+  return (
+    <ToDoContainer>
+      <Description>{props.description}</Description>
+    </ToDoContainer>
+  );
 };
 
 export default ToDo;
