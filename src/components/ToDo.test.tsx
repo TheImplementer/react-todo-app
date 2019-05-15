@@ -1,12 +1,18 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import ToDo from './ToDo';
+import 'jest-styled-components';
 
 describe('ToDo component', () => {
-  let toDo: ShallowWrapper;
-  beforeEach(() => (toDo = shallow(<ToDo description="Test" />)));
-
   it('should display the description', () => {
-    expect(toDo.find('Description').text()).toBe('Test');
+    const toDo: ReactWrapper = mount(<ToDo description="Test" completed={false} />);
+    const description: ReactWrapper = toDo.find('Description');
+    expect(description.text()).toBe('Test');
+    expect(description).toHaveStyleRule('text-decoration', 'none');
+  });
+
+  it('should display the to-do description line-through when completed', () => {
+    const toDo: ReactWrapper = mount(<ToDo description="Test" completed={true} />);
+    expect(toDo.find('Description')).toHaveStyleRule('text-decoration', 'line-through');
   });
 });

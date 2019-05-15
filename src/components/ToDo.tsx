@@ -8,17 +8,21 @@ const ToDoContainer = styled.div`
   padding: 1rem;
 `;
 
-const Description = styled.div``;
+const Description = styled.div<{ completed: boolean }>`
+  text-decoration: ${(props: { completed: boolean }) =>
+    props.completed ? 'line-through' : 'none'};
+`;
 Description.displayName = 'Description';
 
 interface ToDoProps {
   description: string;
+  completed: boolean;
 }
 
 const ToDo: React.FC<ToDoProps> = props => {
   return (
     <ToDoContainer>
-      <Description>{props.description}</Description>
+      <Description completed={props.completed}>{props.description}</Description>
     </ToDoContainer>
   );
 };
