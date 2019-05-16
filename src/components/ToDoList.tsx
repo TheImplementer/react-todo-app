@@ -20,6 +20,7 @@ const EntriesContainer = styled.div`
 interface ToDoEntry {
   id: string;
   description: string;
+  completed: boolean;
 }
 
 const ToDoList: React.FC = () => {
@@ -30,6 +31,7 @@ const ToDoList: React.FC = () => {
       currentEntries.concat({
         id: uuid(),
         description: newEntry,
+        completed: false,
       }),
     );
   }
@@ -39,7 +41,7 @@ const ToDoList: React.FC = () => {
       <AddNewToDo onNewEntry={handleNewEntry} />
       <EntriesContainer>
         {entries.map(entry => (
-          <ToDo description={entry.description} key={entry.id} />
+          <ToDo description={entry.description} completed={entry.completed} key={entry.id} />
         ))}
       </EntriesContainer>
     </BodyContainer>
