@@ -36,12 +36,31 @@ const ToDoList: React.FC = () => {
     );
   }
 
+  function handleToggleCompleted(entryId: string) {
+    setEntries(currentEntries =>
+      currentEntries.map(entry => {
+        if (entry.id !== entryId) {
+          return entry;
+        }
+
+        return Object.assign({}, entry, {
+          completed: entry.completed ? false : true,
+        });
+      }),
+    );
+  }
+
   return (
     <BodyContainer>
       <AddNewToDo onNewEntry={handleNewEntry} />
       <EntriesContainer>
         {entries.map(entry => (
-          <ToDo description={entry.description} completed={entry.completed} key={entry.id} />
+          <ToDo
+            description={entry.description}
+            completed={entry.completed}
+            toggleCompleted={handleToggleCompleted.bind(null, entry.id)}
+            key={entry.id}
+          />
         ))}
       </EntriesContainer>
     </BodyContainer>

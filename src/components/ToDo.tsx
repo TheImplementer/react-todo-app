@@ -14,14 +14,16 @@ const Description = styled.div<{ completed: boolean }>`
 `;
 Description.displayName = 'Description';
 
-interface ToDoProps {
+export interface ToDoProps {
   description: string;
   completed: boolean;
+  toggleCompleted: () => void;
 }
 
 const ToDo: React.FC<ToDoProps> = props => {
   return (
     <ToDoContainer>
+      <input type="checkbox" onChange={props.toggleCompleted} checked={props.completed} />
       <Description completed={props.completed}>{props.description}</Description>
     </ToDoContainer>
   );

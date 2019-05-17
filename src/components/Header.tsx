@@ -7,8 +7,10 @@ const HeaderContainer = styled.div`
   color: #fff;
   padding: 0.5rem;
 `;
+HeaderContainer.displayName = 'HeaderContainer';
 
 const AppTitle = styled.h1``;
+AppTitle.displayName = 'AppTitle';
 
 const Header: React.FC = () => (
   <HeaderContainer>

@@ -7,10 +7,10 @@ describe('Header', () => {
   beforeEach(() => (header = shallow(<Header />)));
 
   it('should have a container for the title', () => {
-    expect(header.find('div').length).toBe(1);
+    expect(header.find('HeaderContainer').length).toBe(1);
   });
 
   it('should display the app title', () => {
-    expect(header.find('div h1').text()).toBe('ToDo List');
+    expect(header.find('AppTitle').text()).toBe('ToDo List');
   });
 });
