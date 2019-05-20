@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import uuid from 'uuid/v4';
 import AddNewToDo from './AddNewToDo';
 import ToDo from './ToDo';
 import styled from 'styled-components';
+
+const ENTRIES_KEY = '@toDoEntries';
 
 const BodyContainer = styled.div`
   display: flex;
@@ -24,9 +26,15 @@ interface ToDoEntry {
 }
 
 const ToDoList: React.FC = () => {
-  const [entries, setEntries] = useState<ToDoEntry[]>([]);
+  const savedEntries = localStorage.getItem(ENTRIES_KEY);
+  const parsedEntries = savedEntries !== null ? JSON.parse(savedEntries) : [];
+  const [entries, setEntries] = useState<ToDoEntry[]>(parsedEntries);
 
-  function handleNewEntry(newEntry: string) {
+  useEffect(() => {
+    localStorage.setItem(ENTRIES_KEY, JSON.stringify(entries));
+  }, [entries]);
+
+  const handleNewEntry = (newEntry: string) => {
     setEntries(currentEntries =>
       currentEntries.concat({
         id: uuid(),
@@ -34,9 +42,9 @@ const ToDoList: React.FC = () => {
         completed: false,
       }),
     );
-  }
+  };
 
-  function handleToggleCompleted(entryId: string) {
+  const handleToggleCompleted = (entryId: string) => {
     setEntries(currentEntries =>
       currentEntries.map(entry => {
         if (entry.id !== entryId) {
@@ -48,7 +56,7 @@ const ToDoList: React.FC = () => {
         });
       }),
     );
-  }
+  };
 
   return (
     <BodyContainer>
