@@ -23,4 +23,11 @@ describe('AddNewToDo component', () => {
     addButton.simulate('click');
     expect(newEntryFn).toHaveBeenCalledWith('Test entry');
   });
+
+  it('should notify the addition of a new entry when pressing enter in the text input field', () => {
+    const input = addNewToDo.find('input[type="text"]');
+    input.simulate('change', { target: { value: 'Test entry' } });
+    input.simulate('keydown', { key: 'Enter' });
+    expect(newEntryFn).toHaveBeenCalledWith('Test entry');
+  });
 });
