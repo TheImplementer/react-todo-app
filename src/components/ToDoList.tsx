@@ -58,6 +58,10 @@ const ToDoList: React.FC = () => {
     );
   };
 
+  const handleDeletion = (entryId: string) => {
+    setEntries(currentEntries => currentEntries.filter(entry => entry.id !== entryId));
+  };
+
   return (
     <BodyContainer>
       <AddNewToDo onNewEntry={handleNewEntry} />
@@ -67,6 +71,7 @@ const ToDoList: React.FC = () => {
             description={entry.description}
             completed={entry.completed}
             toggleCompleted={handleToggleCompleted.bind(null, entry.id)}
+            onDelete={handleDeletion.bind(null, entry.id)}
             key={entry.id}
           />
         ))}

@@ -24,11 +24,20 @@ describe('ToDoList component', () => {
     ).toBeTruthy();
   });
 
-  it('should mark a to-do as completed when notified', () => {
+  it('should mark a todo entry as completed when notified', () => {
     const addNewToDo = toDoList.find(AddNewToDo);
     addNewToDo.props().onNewEntry('Test entry');
     const toDo = toDoList.find(ToDo);
     toDo.props().toggleCompleted();
     expect(toDoList.find(ToDo).props().completed).toBeTruthy();
+  });
+
+  it('should delete a todo entry when notified', () => {
+    const addNewToDo = toDoList.find(AddNewToDo);
+    addNewToDo.props().onNewEntry('Test entry');
+    const toDo = toDoList.find(ToDo);
+    expect(toDo.length).toBe(1);
+    toDo.props().onDelete();
+    expect(toDoList.find(ToDo).length).toBe(0);
   });
 });

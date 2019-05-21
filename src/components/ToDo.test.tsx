@@ -37,4 +37,14 @@ describe('ToDo component', () => {
     );
     expect(toDo.find('input[type="checkbox"]').props().checked).toBeTruthy();
   });
+
+  it('should notify when the delete button is clicked', () => {
+    const onDelete = jest.fn();
+    const toDo: ShallowWrapper = shallow(
+      <ToDo description="Test" completed={true} toggleCompleted={jest.fn()} onDelete={onDelete} />,
+    );
+
+    toDo.find('[data-testid="delete"]').simulate('click');
+    expect(onDelete).toHaveBeenCalledTimes(1);
+  });
 });

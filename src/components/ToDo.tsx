@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const ToDoContainer = styled.div`
   margin: 0.5rem;
@@ -18,6 +20,7 @@ export interface ToDoProps {
   description: string;
   completed: boolean;
   toggleCompleted: () => void;
+  onDelete: () => void;
 }
 
 const ToDo: React.FC<ToDoProps> = props => {
@@ -25,6 +28,9 @@ const ToDo: React.FC<ToDoProps> = props => {
     <ToDoContainer>
       <input type="checkbox" onChange={props.toggleCompleted} checked={props.completed} />
       <Description completed={props.completed}>{props.description}</Description>
+      <button type="button" data-testid="delete" onClick={props.onDelete}>
+        <FontAwesomeIcon icon={faTrashAlt} />
+      </button>
     </ToDoContainer>
   );
 };
